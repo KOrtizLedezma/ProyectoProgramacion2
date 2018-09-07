@@ -1,12 +1,12 @@
 package insumos.entity;
 
-public class Insumos {
+public class Insumo {
 
 	private int codigoInsumos;
 	private int cantidadInsumos;
 	private String nombre;
 	
-	public Insumos(int codigoInsumos, int cantidadInsumos, String nombre) {
+	public Insumo(int codigoInsumos, int cantidadInsumos, String nombre) {
 		super();
 		this.codigoInsumos = codigoInsumos;
 		this.cantidadInsumos = cantidadInsumos;

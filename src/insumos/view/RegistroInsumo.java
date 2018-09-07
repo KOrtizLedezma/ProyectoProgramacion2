@@ -2,11 +2,11 @@ package insumos.view;
 
 import java.util.Scanner;
 
-import insumos.entity.Insumos;
+import insumos.entity.Insumo;
 
 public class RegistroInsumo {
 
-	public static Insumos ingresar (Scanner scanner) {
+	public static Insumo ingresar (Scanner scanner) {
 		
 		int codigoInsumo = InputTypes.readInt("Ingrese el codigo del Insumo ", scanner);
 		
@@ -14,6 +14,6 @@ public class RegistroInsumo {
 		
 		String nombre = InputTypes.readString("Ingrese el nombre del Insumo", scanner);
 		
-		return new Insumos(codigoInsumo, cantidadInsumo, nombre) ;
+		return new Insumo(codigoInsumo, cantidadInsumo, nombre) ;
 	}
 }
