@@ -11,6 +11,8 @@ public static Menu Ingresar(Scanner scanner)
  int codigoMenu = InputTypes.readInt("Ingrese el codigo de Menu:", scanner);
  int codigoPlato =InputTypes.readInt("Ingrese el codigo Plato:", scanner);
  String nombrePlato = InputTypes.readString("Ingrese el nombre del Plato", scanner);
- return new Menu(codigoMenu, codigoPlato, nombrePlato);
-		 }
+ String fecha = InputTypes.readString("Ingrese la fecha", scanner);
+ 
+ return new Menu(codigoMenu, codigoPlato, nombrePlato, fecha);
+ }
 }
