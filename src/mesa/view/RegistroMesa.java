@@ -8,8 +8,9 @@ public class RegistroMesa {
 
 	public static Mesa ingresar (Scanner scanner){
 		
+		int codigoMesa = InputTypes.readInt("Ingrese el codigo de la Mesa", scanner);
 		int cuenta = InputTypes.readInt("Ingrese la cuenta", scanner);
 		
-		return new Mesa (cuenta);
+		return new Mesa (codigoMesa, cuenta);
 	}
 }
