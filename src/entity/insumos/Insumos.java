@@ -3,9 +3,10 @@ package entity.insumos;
 public class Insumos {
  private int codigoInsumo;
  private int cantidadInsumo;
-public Insumos(int cantidadInsumo) {
+public Insumos(int codigoInsumo, int cantidadInsumo) {
 	super();
 	this.cantidadInsumo = cantidadInsumo;
+	this.codigoInsumo = codigoInsumo;
 }
 public int getCodigoInsumo() {
 	return codigoInsumo;
