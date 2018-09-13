@@ -25,7 +25,7 @@ public class RegistroPlatos {
 
 	public void add() {
 		Plato plato = RegistroPlato.ingresar(scanner);
-		String sql = "Insert into Plato (codigoPlato, nombre, precio, tamaño) values(?,?,?,?)";
+		String sql = "Insert into Plato (CodigoPlato, NombrePlato, PrecioPlato, TamañoPlato) values(?,?,?,?)";
 			try {
 				conexion.consulta(sql);
 				conexion.getSentencia().setInt(1, plato.getCodigoPlato());
@@ -39,11 +39,11 @@ public class RegistroPlatos {
 	}
 
 	public void delete() {
-		int codigoPlato = InputTypes.readInt("Código del plato: ", scanner);
-		String sql = "delete from plato where código = ?";
+		int CodigoPlato = InputTypes.readInt("Código del Plato: ", scanner);
+		String sql = "delete from Plato where código = ?";
 		try {
 			conexion.consulta(sql);
-			conexion.getSentencia().setInt(1, codigoPlato);
+			conexion.getSentencia().setInt(1, CodigoPlato);
 			conexion.modificacion();
 		} catch (SQLException e) {
 			System.out.println(e.getSQLState());
@@ -53,20 +53,20 @@ public class RegistroPlatos {
 	public void update() throws SQLException, NoExistePlato {
 		ResultSet resultSet;
 		Plato plato;
-		String tamaño;
-		String nombre;
-		double precio;
-		int codigoPlato = InputTypes.readInt("Código del plato: ", scanner);
+		String TamañoPlato;
+		String NombrePlato;
+		double PrecioPlato;
+		int CodigoPlato = InputTypes.readInt("Código del plato: ", scanner);
 		String sql = "select * from plato where código = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, codigoPlato);
+		conexion.getSentencia().setInt(1, CodigoPlato);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			codigoPlato = resultSet.getInt("codigoPlato");
-			nombre = resultSet.getString("nombre");
-			precio = resultSet.getDouble("precio");
-			tamaño = resultSet.getString("Tamaño");
-			plato = new Plato(codigoPlato, nombre, precio, tamaño);
+			CodigoPlato = resultSet.getInt("CodigoPlato");
+			NombrePlato = resultSet.getString("NombrePlato");
+			PrecioPlato = resultSet.getDouble("PrecioPlato");
+			TamañoPlato = resultSet.getString("TamañoPlato");
+			plato = new Plato(CodigoPlato, NombrePlato, PrecioPlato, TamañoPlato);
 		} else {
 			throw new NoExistePlato();
 		}
@@ -74,7 +74,7 @@ public class RegistroPlatos {
 		System.out.println(plato);
 		Menu.menúModificar(scanner, plato);
 
-		sql = "update producto set codigoPlato= ?, nombre = ?, precio = ?, tamaño = ?";
+		sql = "update plato set CodigoPlato= ?, NombrePlato = ?, PrecioPlato = ?, TamañoPlato = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, plato.getCodigoPlato());
@@ -86,12 +86,12 @@ public class RegistroPlatos {
 
 	public void list() throws SQLException {
 		Plato plato;
-		String sql = "select * from Plato ";
+		String sql = "select * from plato ";
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {
-			plato = new Plato(resultSet.getInt("codigoPlato"), resultSet.getString("nombre"),
-					resultSet.getDouble("precio"), resultSet.getString("tamaño"));
+			plato = new Plato(resultSet.getInt("CodigoPlato"), resultSet.getString("NombrePlato"),
+					resultSet.getDouble("PrecioPlato"), resultSet.getString("TamañoPlato"));
 			System.out.println(plato);
 		}
 	}
@@ -100,24 +100,24 @@ public class RegistroPlatos {
 		
 		ResultSet resultSet;
 		Plato plato;
-		int codigoPlato;
-		String nombre;
-		Double precio;
-		String tamaño;
-		int codigoInsumo;
-		int cantidadInsumo;
-		int codigoReceta;
-		int codigo = InputTypes.readInt("Código del Plato: ", scanner);
+		int CodigoPlato;
+		String NombrePlato;
+		Double PrecioPlato;
+		String TamañoPlato;
+		int CodigoInsumo;
+		int CantidadInsumo;
+		int CodigoReceta;
+		int Codigo = InputTypes.readInt("Código del Plato: ", scanner);
 		String sql = "select * from plato where código = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, codigo);
+		conexion.getSentencia().setInt(1, Codigo);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			codigoPlato = resultSet.getInt("codigoPlato");
-			nombre = resultSet.getString("nombre");
-			precio = resultSet.getDouble("precio");
-			tamaño = resultSet.getString("tamaño");
-			plato = new Plato(codigoPlato, nombre, precio, tamaño);
+			CodigoPlato = resultSet.getInt("CodigoPlato");
+			NombrePlato = resultSet.getString("NombrePlato");
+			PrecioPlato = resultSet.getDouble("PrecioPlato");
+			TamañoPlato = resultSet.getString("TamañoPlato");
+			plato = new Plato(CodigoPlato, NombrePlato, PrecioPlato, TamañoPlato);
 		} else {
 			throw new NoExistePlato();
 		}
@@ -127,13 +127,13 @@ public class RegistroPlatos {
 
 		sql = "select * from receta where código = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, codigoPlato);
+		conexion.getSentencia().setInt(1, CodigoPlato);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			codigoPlato = resultSet.getInt("codigoPlato");
-			codigoInsumo = resultSet.getInt("codigoInsumo");
-			cantidadInsumo = resultSet.getInt("cantidadInsumo");
-			receta = new Receta(codigoPlato, codigoInsumo, cantidadInsumo);
+			CodigoPlato = resultSet.getInt("CodigoPlato");
+			CodigoInsumo = resultSet.getInt("CodigoInsumo");
+			CantidadInsumo = resultSet.getInt("CantidadInsumo");
+			receta = new Receta(CodigoPlato, CodigoInsumo, CantidadInsumo);
 			System.out.println(receta);
 		} else {
 			throw new NoExisteReceta();

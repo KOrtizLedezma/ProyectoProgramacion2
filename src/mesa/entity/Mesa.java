@@ -2,29 +2,34 @@ package mesa.entity;
 
 public class Mesa {
 
-	private int cuenta;
-	private int codigoMesa;
+	private int Cuenta;
+	private int CodigoMesa;
 	
-	public Mesa(int cuenta, int codigoMesa) {
+	public Mesa(int Cuenta, int CodigoMesa) {
 		super();
-		this.codigoMesa = codigoMesa;
-		this.cuenta = cuenta;
+		this.CodigoMesa = CodigoMesa;
+		this.Cuenta = Cuenta;
 	}
 
 	public int getCodigoMesa() {
-		return codigoMesa;
+		return CodigoMesa;
 	}
 
 	public void setCodigoMesa(int codigoMesa) {
-		this.codigoMesa = codigoMesa;
+		this.CodigoMesa = codigoMesa;
 	}
 
 	public int getCuenta() {
-		return cuenta;
+		return Cuenta;
 	}
 
 	public void setCuenta(int cuenta) {
-		cuenta = cuenta;
+		this.Cuenta = cuenta;
+	}
+
+	@Override
+	public String toString() {
+		return "Mesa [Cuenta=" + Cuenta + ", CodigoMesa=" + CodigoMesa + "]";
 	}
 	
 }

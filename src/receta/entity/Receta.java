@@ -2,38 +2,38 @@ package receta.entity;
 
 public class Receta {
 
-	private int codigoPlato;
-	private int codigoInsumo;
-	private int cantidadInsumo;
+	private int CodigoPlato;
+	private int CodigoInsumo;
+	private int CantidadInsumo;
 	
-	public Receta(int codigoPlato, int codigoInsumo, int cantidadInsumo) {
+	public Receta(int CodigoPlato, int CodigoInsumo, int CantidadInsumo) {
 		super();
-		this.codigoPlato = codigoPlato;
-		this.codigoInsumo = codigoInsumo;
-		this.cantidadInsumo = cantidadInsumo;
+		this.CodigoPlato = CodigoPlato;
+		this.CodigoInsumo = CodigoInsumo;
+		this.CantidadInsumo = CantidadInsumo;
 	}
 
 	public int getCodigoPlato() {
-		return codigoPlato;
+		return CodigoPlato;
 	}
 
 	public void setCodigoPlato(int codigoPlato) {
-		this.codigoPlato = codigoPlato;
+		this.CodigoPlato = codigoPlato;
 	}
 
 	public int getCodigoInsumo() {
-		return codigoInsumo;
+		return CodigoInsumo;
 	}
 
 	public void setCodigoInsumo(int codigoInsumo) {
-		this.codigoInsumo = codigoInsumo;
+		this.CodigoInsumo = codigoInsumo;
 	}
 
 	public int getCantidadInsumo() {
-		return cantidadInsumo;
+		return CantidadInsumo;
 	}
 
 	public void setCantidadInsumo(int cantidadInsumo) {
-		this.cantidadInsumo = cantidadInsumo;
+		this.CantidadInsumo = cantidadInsumo;
 	}
 }

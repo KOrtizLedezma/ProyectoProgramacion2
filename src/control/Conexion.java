@@ -30,10 +30,10 @@ public class Conexion {
 		return sentencia.executeQuery();
 	}
 	
-	public int modificacion() throws SQLException{
+	public int modificacion() throws SQLException {
 		return sentencia.executeUpdate();
+		
 	}
-	
 	public void close() throws SQLException {
 		if(sentencia != null) {
 			sentencia.close();

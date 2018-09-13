@@ -2,54 +2,54 @@ package plato.entity;
 
 public class Plato {
 
-	private int codigoPlato;
-	private String nombre;
-	private double precio;
-	private String tamaño;
+	private int CodigoPlato;
+	private String NombrePlato;
+	private double PrecioPlato;
+	private String TamañoPlato;
 	
-	public Plato(int codigoPlato, String nombre, double precio, String tamaño) {
+	public Plato(int CodigoPlato, String NombrePlato, double PrecioPlato, String TamañoPlato) {
 		super();
-		this.codigoPlato = codigoPlato;
-		this.nombre = nombre;
-		this.precio = precio;
-		this.tamaño = tamaño;
+		this.CodigoPlato = CodigoPlato;
+		this.NombrePlato = NombrePlato;
+		this.PrecioPlato = PrecioPlato;
+		this.TamañoPlato = TamañoPlato;
 	}
 
 	public int getCodigoPlato() {
-		return codigoPlato;
+		return CodigoPlato;
 	}
 
 	public void setCodigoPlato(int codigoPlato) {
-		this.codigoPlato = codigoPlato;
+		this.CodigoPlato = codigoPlato;
 	}
 
 	public String getNombre() {
-		return nombre;
+		return NombrePlato;
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.NombrePlato = nombre;
 	}
 
 	public double getPrecio() {
-		return precio;
+		return PrecioPlato;
 	}
 
 	public void setPrecio(double precio) {
-		this.precio = precio;
+		this.PrecioPlato = precio;
 	}
 
 	public String getTamaño() {
-		return tamaño;
+		return TamañoPlato;
 	}
 
 	public void setTamaño(String tamaño) {
-		this.tamaño = tamaño;
+		this.TamañoPlato = tamaño;
 	}
 
 	@Override
 	public String toString() {
-		return "Plato [codigoPlato=" + codigoPlato + ", nombre=" + nombre + ", precio=" + precio + ", tamaño=" + tamaño
+		return "Plato [codigoPlato=" + CodigoPlato + ", nombre=" + NombrePlato + ", precio=" + PrecioPlato + ", tamaño=" + TamañoPlato
 				+ "]";
 	}
 	

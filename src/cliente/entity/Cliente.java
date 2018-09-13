@@ -2,64 +2,64 @@ package cliente.entity;
 
 public class Cliente {
 
-	private int nitCliente;
-	private int cantidadPlatos;
-	private int codigoPlato;
-	private int codigoPlatoEspecial;
-	private String nombreNit;
+	private int NitCliente;
+	private int CantidadPlatos;
+	private int CodigoPlato;
+	private int CodigoPlatoEspecial;
+	private String NombreNit;
 	
-	public Cliente(int nitCliente, int cantidadPlatos, int codigoPlato, int codigoPlatoEspecial, String nombreNit) {
+	public Cliente(int NitCliente, int CantidadPlatos, int CodigoPlato, int CodigoPlatoEspecial, String NombreNit) {
 		super();
-		this.nitCliente = nitCliente;
-		this.cantidadPlatos = cantidadPlatos;
-		this.codigoPlato = codigoPlato;
-		this.codigoPlatoEspecial = codigoPlatoEspecial;
-		this.nombreNit = nombreNit;
+		this.NitCliente = NitCliente;
+		this.CantidadPlatos = CantidadPlatos;
+		this.CodigoPlato = CodigoPlato;
+		this.CodigoPlatoEspecial = CodigoPlatoEspecial;
+		this.NombreNit = NombreNit;
 	}
 
 	public int getNitCliente() {
-		return nitCliente;
+		return NitCliente;
 	}
 
 	public void setNitCliente(int nitCliente) {
-		this.nitCliente = nitCliente;
+		this.NitCliente = nitCliente;
 	}
 
 	public int getCantidadPlatos() {
-		return cantidadPlatos;
+		return CantidadPlatos;
 	}
 
 	public void setCantidadPlatos(int cantidadPlatos) {
-		this.cantidadPlatos = cantidadPlatos;
+		this.CantidadPlatos = cantidadPlatos;
 	}
 
 	public int getCodigoPlato() {
-		return codigoPlato;
+		return CodigoPlato;
 	}
 
 	public void setCodigoPlato(int codigoPlato) {
-		this.codigoPlato = codigoPlato;
+		this.CodigoPlato = codigoPlato;
 	}
 
 	public int getCodigoPlatoEspecial() {
-		return codigoPlatoEspecial;
+		return CodigoPlatoEspecial;
 	}
 
 	public void setCodigoPlatoEspecial(int codigoPlatoEspecial) {
-		this.codigoPlatoEspecial = codigoPlatoEspecial;
+		this.CodigoPlatoEspecial = codigoPlatoEspecial;
 	}
 
 	public String getNombreNit() {
-		return nombreNit;
+		return NombreNit;
 	}
 
 	public void setNombreNit(String nombreNit) {
-		this.nombreNit = nombreNit;
+		this.NombreNit = nombreNit;
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [nitCliente=" + nitCliente + ", cantidadPlatos=" + cantidadPlatos + ", codigoPlato="
-				+ codigoPlato + ", codigoPlatoEspecial=" + codigoPlatoEspecial + ", nombreNit=" + nombreNit + "]";
+		return "Cliente [nitCliente=" + NitCliente + ", cantidadPlatos=" + CantidadPlatos + ", codigoPlato="
+				+ CodigoPlato + ", codigoPlatoEspecial=" + CodigoPlatoEspecial + ", nombreNit=" + NombreNit + "]";
 	}
 }

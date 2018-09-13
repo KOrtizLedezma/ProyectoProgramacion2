@@ -18,7 +18,7 @@ public class RegistrarClientes {
 	}
 	public void add()  {
 		Cliente cliente = RegistrarCliente.ingresar(scanner);
-		String sql = "Insert into Cliente (nitCliente, cantidadPlatos, codigoPlato, codigoPlatoEspecial, nombreNit) values(?,?,?,?,?";
+		String sql = "Insert into cliente (NitCliente, CantidadPlatos, CodigoPlato, CodigoPlatoEspecial, NombreNit) values(?,?,?,?,?";
 			
 			
 			try {
@@ -37,13 +37,13 @@ public class RegistrarClientes {
 
 	public void list() throws SQLException {
 		Cliente cliente;
-		String sql = "select * from Cliente ";
+		String sql = "select * from cliente ";
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {
-			cliente = new Cliente(resultSet.getInt("nitCliente"), resultSet.getInt("cantidadPlatos"), 
-					              resultSet.getInt("codigoPlato"),resultSet.getInt("codigoPlatoEspecial"),
-					              resultSet.getString("nombreNit"));
+			cliente = new Cliente(resultSet.getInt("NitCliente"), resultSet.getInt("CantidadPlatos"), 
+					              resultSet.getInt("CodigoPlato"),resultSet.getInt("CodigoPlatoEspecial"),
+					              resultSet.getString("NombreNit"));
 			System.out.println(cliente);
 		}
 	}

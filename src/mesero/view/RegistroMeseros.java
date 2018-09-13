@@ -24,7 +24,7 @@ public class RegistroMeseros {
 
 	public void add() {
 		Mesero mesero = RegistroMesero.ingresar(scanner);
-		String sql = "Insert into Mesero (codigoMesero, codigoMesa) values(?,?)";
+		String sql = "Insert into Mesero (CodigoMesero, CodigoMesa) values(?,?)";
 			try {
 				conexion.consulta(sql);
 				conexion.getSentencia().setInt(1, mesero.getCodigoMesero());
@@ -37,11 +37,11 @@ public class RegistroMeseros {
 	}
 
 	public void delete() {
-		int codigoMesero = InputTypes.readInt("Código del mesero: ", scanner);
-		String sql = "delete from mesero where código = ?";
+		int CodigoMesero = InputTypes.readInt("Código del mesero: ", scanner);
+		String sql = "delete from Mesero where código = ?";
 		try {
 			conexion.consulta(sql);
-			conexion.getSentencia().setInt(1, codigoMesero);
+			conexion.getSentencia().setInt(1, CodigoMesero);
 			conexion.modificacion();
 		} catch (SQLException e) {
 			System.out.println(e.getSQLState());
@@ -51,16 +51,16 @@ public class RegistroMeseros {
 	public void update() throws SQLException, NoExisteMesero {
 		ResultSet resultSet;
 		Mesero mesero;
-		int codigoMesa;
-		int codigoMesero = InputTypes.readInt("Código del Mesero: ", scanner);
-		String sql = "select * from mesero where código = ?";
+		int CodigoMesa;
+		int CodigoMesero = InputTypes.readInt("Código del Mesero: ", scanner);
+		String sql = "select * from Mesero where código = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, codigoMesero);
+		conexion.getSentencia().setInt(1, CodigoMesero);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			codigoMesero = resultSet.getInt("codigoMesero");
-			codigoMesa = resultSet.getInt("codigoMesa");
-			mesero = new Mesero(codigoMesero, codigoMesa);
+			CodigoMesero = resultSet.getInt("CodigoMesero");
+			CodigoMesa = resultSet.getInt("CodigoMesa");
+			mesero = new Mesero(CodigoMesero, CodigoMesa);
 		} else {
 			throw new NoExisteMesero();
 		}
@@ -68,7 +68,7 @@ public class RegistroMeseros {
 		System.out.println(mesero);
 		Menu.menúModificar(scanner, mesero);
 
-		sql = "update producto set codigoMesero = ?, codigoMesa = ?";
+		sql = "update Mesero set CodigoMesero = ?, CodigoMesa = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, mesero.getCodigoMesero());
@@ -82,7 +82,7 @@ public class RegistroMeseros {
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {
-			mesero = new Mesero(resultSet.getInt("codigoMesa"), resultSet.getInt("codigoMesero"));
+			mesero = new Mesero(resultSet.getInt("CodigoMesa"), resultSet.getInt("CodigoMesero"));
 			System.out.println(mesero);
 		}
 	}
@@ -90,18 +90,18 @@ public class RegistroMeseros {
 	public void listMesa() throws NoExisteMesero, SQLException, NoExisteMesa {
 		ResultSet resultSet;
 		Mesero mesero;
-		int codigoMesero;
-		int codigoMesa;
-		int cuenta;
-		int codigo = InputTypes.readInt("Código del Mesero: ", scanner);
-		String sql = "select * from mesero where código = ?";
+		int CodigoMesero;
+		int CodigoMesa;
+		int Cuenta;
+		int Codigo = InputTypes.readInt("Código del Mesero: ", scanner);
+		String sql = "select * from Mesero where código = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, codigo);
+		conexion.getSentencia().setInt(1, Codigo);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			codigoMesa = resultSet.getInt("codigoMesa");
-			codigoMesero = resultSet.getInt("codigoMesero");
-			mesero = new Mesero(codigoMesero, codigoMesa);
+			CodigoMesa = resultSet.getInt("CodigoMesa");
+			CodigoMesero = resultSet.getInt("CodigoMesero");
+			mesero = new Mesero(CodigoMesero, CodigoMesa);
 		} else {
 			throw new NoExisteMesero();
 		}
@@ -109,14 +109,14 @@ public class RegistroMeseros {
 
 		Mesa mesa;
 
-		sql = "select * from mesa where código = ?";
+		sql = "select * from Mesa where código = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, codigoMesa);
+		conexion.getSentencia().setInt(1, CodigoMesa);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			codigoMesa = resultSet.getInt("codigoMesa");
-			cuenta = resultSet.getInt("cuenta");
-			mesa = new Mesa(codigoMesa, cuenta);
+			CodigoMesa = resultSet.getInt("CodigoMesa");
+			Cuenta = resultSet.getInt("Cuenta");
+			mesa = new Mesa(CodigoMesa, Cuenta);
 			System.out.println(mesa);
 		} else {
 			throw new NoExisteMesa();

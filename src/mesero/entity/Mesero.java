@@ -2,34 +2,34 @@ package mesero.entity;
 
 public class Mesero {
 
-	private int codigoMesero;
-	private int codigoMesa;
+	private int CodigoMesero;
+	private int CodigoMesa;
 	
 	public Mesero(int codigoMesero, int codigoMesa) {
 		
-		this.codigoMesero = codigoMesero;
-		this.codigoMesa = codigoMesa;
+		this.CodigoMesero = codigoMesero;
+		this.CodigoMesa = codigoMesa;
 	}
 
 	public int getCodigoMesero() {
-		return codigoMesero;
+		return CodigoMesero;
 	}
 
 	public void setCodigoMesero(int codigoMesero) {
-		this.codigoMesero = codigoMesero;
+		this.CodigoMesero = codigoMesero;
 	}
 
 	public int getCodigoMesa() {
-		return codigoMesa;
+		return CodigoMesa;
 	}
 
 	public void setCodigoMesa(int codigoMesa) {
-		this.codigoMesa = codigoMesa;
+		this.CodigoMesa = codigoMesa;
 	}
 
 	@Override
 	public String toString() {
-		return "Mesero [codigoMesero=" + codigoMesero + ", codigoMesa=" + codigoMesa + "]";
+		return "Mesero [codigoMesero=" + CodigoMesero + ", codigoMesa=" + CodigoMesa + "]";
 	}
 	
 }
