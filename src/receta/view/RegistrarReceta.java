@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import receta.entity.Receta;
 
-public class registrarReceta {
+public class RegistrarReceta {
 
 	public static Receta ingresar (Scanner scanner) {
 		

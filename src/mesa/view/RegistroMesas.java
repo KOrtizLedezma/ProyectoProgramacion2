@@ -63,7 +63,7 @@ public class RegistroMesas {
 		}
 
 		System.out.println(mesa);
-		Menú.menúModificar(scanner, mesa);
+		Menu.menúModificar(scanner, mesa);
 
 		sql = "update producto set nombre = ?, precio = ?, descripción = ?, códigoCategoría = ?  where código = ?";
 

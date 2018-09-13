@@ -1,6 +1,6 @@
 package mesero.view;
 
-import java.sql.ResultSet;
+import java.sql.ResultSet; 
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -8,8 +8,8 @@ import control.Conexion;
 import mesa.entity.Mesa;
 import mesa.entity.NoExisteMesa;
 import mesa.view.InputTypes;
-import mesa.view.RegistroMesa;
 import mesero.entity.Mesero;
+import mesero.entity.NoExisteMesero;
 
 public class RegistroMeseros {
 
@@ -38,7 +38,7 @@ public class RegistroMeseros {
 
 	public void delete() {
 		int codigoMesero = InputTypes.readInt("Código del mesero: ", scanner);
-		String sql = "delete from producto where código = ?";
+		String sql = "delete from mesero where código = ?";
 		try {
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, codigoMesero);
@@ -48,62 +48,79 @@ public class RegistroMeseros {
 		}
 	}
 
-	public void update() throws SQLException, NoExisteMesa {
+	public void update() throws SQLException, NoExisteMesero {
 		ResultSet resultSet;
 		Mesero mesero;
 		int codigoMesa;
 		int codigoMesero = InputTypes.readInt("Código del Mesero: ", scanner);
-		String sql = "select * from mesa where código = ?";
+		String sql = "select * from mesero where código = ?";
+		conexion.consulta(sql);
+		conexion.getSentencia().setInt(1, codigoMesero);
+		resultSet = conexion.resultado();
+		if (resultSet.next()) {
+			codigoMesero = resultSet.getInt("codigoMesero");
+			codigoMesa = resultSet.getInt("codigoMesa");
+			mesero = new Mesero(codigoMesero, codigoMesa);
+		} else {
+			throw new NoExisteMesero();
+		}
+
+		System.out.println(mesero);
+		Menu.menúModificar(scanner, mesero);
+
+		sql = "update producto set codigoMesero = ?, codigoMesa = ?";
+
+		conexion.consulta(sql);
+		conexion.getSentencia().setInt(1, mesero.getCodigoMesero());
+		conexion.getSentencia().setInt(2, mesero.getCodigoMesa());
+		conexion.modificacion();
+	}
+
+	public void list() throws SQLException {
+		Mesero mesero;
+		String sql = "select * from Mesero ";
+		conexion.consulta(sql);
+		ResultSet resultSet = conexion.resultado();
+		while (resultSet.next()) {
+			mesero = new Mesero(resultSet.getInt("codigoMesa"), resultSet.getInt("codigoMesero"));
+			System.out.println(mesero);
+		}
+	}
+
+	public void listMesa() throws NoExisteMesero, SQLException, NoExisteMesa {
+		ResultSet resultSet;
+		Mesero mesero;
+		int codigoMesero;
+		int codigoMesa;
+		int cuenta;
+		int codigo = InputTypes.readInt("Código del Mesero: ", scanner);
+		String sql = "select * from mesero where código = ?";
+		conexion.consulta(sql);
+		conexion.getSentencia().setInt(1, codigo);
+		resultSet = conexion.resultado();
+		if (resultSet.next()) {
+			codigoMesa = resultSet.getInt("codigoMesa");
+			codigoMesero = resultSet.getInt("codigoMesero");
+			mesero = new Mesero(codigoMesero, codigoMesa);
+		} else {
+			throw new NoExisteMesero();
+		}
+		System.out.println(mesero);
+
+		Mesa mesa;
+
+		sql = "select * from mesa where código = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, codigoMesa);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
 			codigoMesa = resultSet.getInt("codigoMesa");
-			codigoMesero = resultSet.getInt("codigoMesoro");
-			mesero = new Mesero(codigoMesa, codigoMesero);
-		} else {
-			throw new NoExisteMesa();
-		}
-
-		System.out.println(mesero);
-		Menú.menúModificar(scanner, mesero);
-
-		sql = "update producto set nombre = ?, precio = ?, descripción = ?, códigoCategoría = ?  where código = ?";
-
-		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, mesa.getCuenta());
-		conexion.getSentencia().setInt(2, mesa.getCodigoMesa());
-		conexion.modificacion();
-	}
-
-	public void list() throws SQLException {
-		Mesa mesa;
-		String sql = "select * from producto ";
-		conexion.consulta(sql);
-		ResultSet resultSet = conexion.resultado();
-		while (resultSet.next()) {
-			mesa = new Mesa(resultSet.getInt("cuenta"), resultSet.getInt("codigoMesa"));
+			cuenta = resultSet.getInt("cuenta");
+			mesa = new Mesa(codigoMesa, cuenta);
 			System.out.println(mesa);
-		}
-	}
-
-	public void listCatogories() throws NoExisteMesa, SQLException {
-		ResultSet resultSet;
-		Mesa mesa;
-		int cuenta;
-		int codigoMesa = InputTypes.readInt("Código de la Mesa: ", scanner);
-		String sql = "select * from producto where código = ?";
-		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, codigoMesa);
-		resultSet = conexion.resultado();
-		if (resultSet.next()) {
-			cuenta = resultSet.getInt("Cuenta");
-			codigoMesa = resultSet.getInt("códigoMesa");
-			mesa = new Mesa(cuenta,codigoMesa);
 		} else {
 			throw new NoExisteMesa();
 		}
-		System.out.println(mesa);
 
 	}
 }
