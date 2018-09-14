@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import cliente.view.RegistrarClientes;
 import control.Conexion;
+import mesa.entity.Mesa;
 import mesa.view.RegistroMesas;
 import mesero.view.RegistroMeseros;
 import plato.view.RegistroPlatos;
@@ -53,22 +54,18 @@ public class Menu {
 				cliente.view.Menu.menú(scanner, registroCliente);
 				break;
 			case 2:
-					//Aca viene menu mesa
-					System.out.println("Falta Decidir");
+					mesa.view.Menu.menú(scanner, registrarMesas);
 				break;
 			case 3:
-					//Aca viene menu mesero
-				    System.out.println("Falta Decidir");
+					mesero.view.Menu.menú(scanner, registroMeseros);
 				break;
 			
 			case 4:
-					//Aca viene menu plato
-					System.out.println("Falta Decidir");
+				    plato.view.Menu.menú(scanner, registrarPlatos);
 				break;
 			
 			case 5:
-					//Aca viene menu receta
-				    System.out.println("Falta Decidir");
+					receta.view.Menu.menú(scanner, registrarRecetas);
 				break;
 			
 		}

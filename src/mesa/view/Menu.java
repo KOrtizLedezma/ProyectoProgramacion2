@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import mesa.entity.Mesa;
+import mesa.entity.NoExisteMesa;
 
 public class Menu {
 
@@ -19,7 +20,8 @@ public class Menu {
 			System.out.println("------------------- ");
 			System.out.println("1. Ingresar Mesa");
 			System.out.println("2. Listar Mesa ");
-			System.out.println("3. Eliminar Mesa ");
+			System.out.println("3. Listar Mesa y entidades ");
+			System.out.println("4. Eliminar Mesa ");
 			System.out.println("0. Salir");
 			System.out.println();
 
@@ -50,6 +52,13 @@ public class Menu {
 				}
 				break;
 			case 3:
+				try {
+					registroMesas.listCatogories();
+				} catch (NoExisteMesa | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			case 4:
 				registroMesas.delete();
 				break;
 
