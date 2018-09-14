@@ -5,8 +5,10 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import control.Conexión;
+import entity.PlatoEspecial.NoExistePlatoEspecial;
 import entity.PlatoEspecial.PlatoEspecial;
-import regist
+import insumos.view.InputTypes;
+
 
 
 public class RegistroPlatosEspeciales {
@@ -27,18 +29,20 @@ public class RegistroPlatosEspeciales {
 	 ****************************/
 
 	public void add()  {
-		PlatoEspecial platoespecial = RegsitroPlatoEspecial.in(scanner);
-		String sql = "Insert into Producto (nombre, precio, descripción, códigoCategoría) values(?,?,?,?)";
-		try {
-			conexión.consulta(sql);
-			conexión.getSentencia().setString(1, producto.getNombre());
-			conexión.getSentencia().setDouble(2, producto.getPrecio());
-			conexión.getSentencia().setString(3, producto.getDescripción());
-			conexión.getSentencia().setInt(4, producto.getCodCategoría());
-			conexión.modificacion();
-		} catch (SQLException e) {
-			throw new NoExisteCategoría();
-		}
+		PlatoEspecial platoespecial = RegistroPlatoEspecial.Ingresar(scanner);
+		String sql = "Insert into PlatoEspecial (CodigoPlatoEspecial, NombrePlato, PrecioPlatoEspecial) values(?,?,?)";
+			try {
+				conexión.consulta(sql);
+				conexión.getSentencia().setInt(1, platoespecial.getCodigoPlatoEspecial());
+				conexión.getSentencia().setString(2, platoespecial.getNombrePlato());
+				conexión.getSentencia().setDouble(3, platoespecial.getPrecioPlatoEspecial());
+				conexión.modificacion();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 
 	}
 
@@ -47,11 +51,11 @@ public class RegistroPlatosEspeciales {
 	 ****************************/
 
 	public void delete() {
-		int codProducto = InputTypes.readInt("Código de producto: ", scanner);
-		String sql = "delete from producto where código = ?";
+		int codPlatoEspecial = InputTypes.readInt("Código de platoespecial: ", scanner);
+		String sql = "delete from platoespecial where código = ?";
 		try {
 			conexión.consulta(sql);
-			conexión.getSentencia().setInt(1, codProducto);
+			conexión.getSentencia().setInt(1, codPlatoEspecial);
 			conexión.modificacion();
 		} catch (SQLException e) {
 			System.out.println(e.getSQLState());
@@ -65,40 +69,32 @@ public class RegistroPlatosEspeciales {
 	 * @throws NoExisteProducto *
 	 ****************************/
 
-	public void update() throws NoExisteCategoría, SQLException, NoExisteProducto {
+	public void update() throws SQLException, NoExistePlatoEspecial {
 		ResultSet resultSet;
-		Producto producto;
-		String nombre;
-		double precio;
-		String descripción;
-		int códigoCategoría;
-		int código;
-		int codProducto = InputTypes.readInt("Código de producto: ", scanner);
-		String sql = "select * from producto where código = ?";
+		PlatoEspecial platoEspecial;
+		String NombrePlato;
+		double PrecioPlatoEspecial;
+		int CodigoPlatoEspecial = InputTypes.readInt("Código de platoespecial: ", scanner);
+		String sql = "select * from producto where CodigoPlatoEspecial = ?";
 		conexión.consulta(sql);
-		conexión.getSentencia().setInt(1, codProducto);
+		conexión.getSentencia().setInt(1, CodigoPlatoEspecial);
 		resultSet = conexión.resultado();
 		if (resultSet.next()) {
-			nombre = resultSet.getString("nombre");
-			precio = resultSet.getDouble("precio");
-			descripción = resultSet.getString("descripción");
-			códigoCategoría = resultSet.getInt("códigoCategoría");
-			código = resultSet.getInt("código");
-			producto = new Producto(código, nombre, precio, descripción, códigoCategoría);
+			NombrePlato = resultSet.getString("NombrePlato");
+			PrecioPlatoEspecial = resultSet.getDouble("PrecioPlatoEspecial");
+			platoEspecial = new PlatoEspecial(CodigoPlatoEspecial, NombrePlato, PrecioPlatoEspecial);
 		} else {
-			throw new NoExisteProducto();
+			throw new NoExistePlatoEspecial();
 		}
 
-		System.out.println(producto);
-		Menú.menúModificar(scanner, producto);
+		System.out.println(platoEspecial);
+		Menú.menúModificar(scanner, platoEspecial);
 
-		sql = "update producto set nombre = ?, precio = ?, descripción = ?, códigoCategoría = ?  where código = ?";
+		sql = "update platoEspecial set NombrePlato = ?, PrecioPlatoEspecial = ? where  CodigoPlatoEspecial = ?";
 
 		conexión.consulta(sql);
-		conexión.getSentencia().setString(1, producto.getNombre());
-		conexión.getSentencia().setDouble(2, producto.getPrecio());
-		conexión.getSentencia().setString(3, producto.getDescripción());
-		conexión.getSentencia().setInt(4, producto.getCodCategoría());
+		conexión.getSentencia().setString(1, platoEspecial.getNombrePlato());
+		conexión.getSentencia().setDouble(2, platoEspecial.getPrecioPlatoEspecial());
 		conexión.modificacion();
 	}
 
@@ -108,15 +104,14 @@ public class RegistroPlatosEspeciales {
 	 ****************************/
 
 	public void list() throws SQLException {
-		Producto producto;
-		String sql = "select * from producto ";
+		PlatoEspecial platoEspecial;
+		String sql = "select * from platoEspecial ";
 		conexión.consulta(sql);
 		ResultSet resultSet = conexión.resultado();
 		while (resultSet.next()) {
-			producto = new Producto(resultSet.getInt("código"), resultSet.getString("nombre"),
-					resultSet.getDouble("precio"), resultSet.getString("descripción"),
-					resultSet.getInt("CódigoCategoría"));
-			System.out.println(producto);
+			platoEspecial = new PlatoEspecial(resultSet.getInt("CodigoPlatoEspecial"), resultSet.getString("NombrePlatoEspecial"),
+					resultSet.getDouble("PrecioPlatoEspecial"));
+			System.out.println(platoEspecial);
 		}
 	}
 
