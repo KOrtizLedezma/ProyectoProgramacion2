@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import control.Conexion;
+import insumos.entity.Insumo;
+import insumos.entity.NoExisteInsumo;
 import plato.entity.NoExistePlato;
 import plato.entity.Plato;
 import receta.entity.NoExisteReceta;
@@ -88,15 +90,12 @@ public class RegistrarRecetas {
 			}
 		}
 		
-		public void listRecetas() throws NoExistePlato, SQLException, NoExisteReceta {
+		public void listRecetasInsumo() throws NoExistePlato, SQLException, NoExisteReceta, NoExisteInsumo {
 			ResultSet resultSet;
 			Receta receta;
-			String NombrePlato;
+			String NombrePlato; String TamañoPlato; String NombreInsumo;
 			Double PrecioPlato;
-			String TamañoPlato;
-			int CodigoInsumo;
-			int CantidadInsumo;
-			int CodigoPlato;
+			int CodigoInsumo; int CantidadInsumo; int CodigoPlato;
 			int Codigo = InputTypes.readInt("Código del Plato: ", scanner);
 			String sql = "select * from receta where código = ?";
 			conexion.consulta(sql);
@@ -127,6 +126,22 @@ public class RegistrarRecetas {
 				System.out.println(plato);
 			} else {
 				throw new NoExistePlato();
+			}
+			
+			Insumo insumo;
+
+			sql = "select * from insumo where código = ?"; 
+			conexion.consulta(sql);
+			conexion.getSentencia().setInt(1, CodigoInsumo);
+			resultSet = conexion.resultado();
+			if (resultSet.next()) {
+				CodigoInsumo = resultSet.getInt("CodigoInsumo");
+				CantidadInsumo = resultSet.getInt("CantidadInsumo");
+				NombreInsumo = resultSet.getString("NombreInsumo");
+				insumo = new Insumo(CodigoInsumo, CantidadInsumo, NombreInsumo);
+				System.out.println(insumo);
+			} else {
+				throw new NoExisteInsumo();
 			}
 
 		}

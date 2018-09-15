@@ -3,8 +3,10 @@ package mesa.view;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import cuenta.entity.NoExisteCuenta;
 import mesa.entity.Mesa;
 import mesa.entity.NoExisteMesa;
+import mesero.entity.NoExisteMesero;
 
 public class Menu {
 
@@ -27,7 +29,7 @@ public class Menu {
 
 			opcion = InputTypes.readInt("¿Su opción? ", scanner);
 
-			if (opcion >= 0 && opcion <= 3) {
+			if (opcion >= 0 && opcion <= 4) {
 				return opcion;
 			}
 		}
@@ -53,11 +55,12 @@ public class Menu {
 				break;
 			case 3:
 				try {
-					registroMesas.listCatogories();
-				} catch (NoExisteMesa | SQLException e) {
+					registroMesas.listCuentaMesero();
+				} catch (NoExisteMesa | SQLException | NoExisteMesero | NoExisteCuenta e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				break;
 			case 4:
 				registroMesas.delete();
 				break;

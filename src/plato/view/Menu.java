@@ -3,7 +3,11 @@ package plato.view;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import detalleVenta.entity.NoExisteDetalleVenta;
+import menuComun.entity.NoExisteMenu;
+import plato.entity.NoExistePlato;
 import plato.entity.Plato;
+import receta.entity.NoExisteReceta;
 
 public class Menu {
 
@@ -15,13 +19,14 @@ public class Menu {
 			System.out.println("------------------- ");
 			System.out.println("1. Ingresar Plato");
 			System.out.println("2. Listar Platos ");
-			System.out.println("3. Eliminar Plato ");
+			System.out.println("3. Listar Platos y sus entidades");
+			System.out.println("4. Eliminar Plato ");
 			System.out.println("0. Salir");
 			System.out.println();
 
 			opcion = InputTypes.readInt("¿Su opción? ", scanner);
 
-			if (opcion >= 0 && opcion <= 3) {
+			if (opcion >= 0 && opcion <= 4) {
 				return opcion;
 			}
 		}
@@ -46,6 +51,14 @@ public class Menu {
 				}
 				break;
 			case 3:
+				try {
+					registroPlatos.listRecetaMenuDetalle();
+				} catch (NoExisteReceta | SQLException | NoExisteMenu | NoExisteDetalleVenta | NoExistePlato e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			case 4:
 				registroPlatos.delete();
 				break;
 

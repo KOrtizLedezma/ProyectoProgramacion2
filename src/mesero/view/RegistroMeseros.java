@@ -24,7 +24,7 @@ public class RegistroMeseros {
 
 	public void add() {
 		Mesero mesero = RegistroMesero.ingresar(scanner);
-		String sql = "Insert into Mesero (CodigoMesero, CodigoMesa) values(?,?)";
+		String sql = "Insert into mesero (CodigoMesero, CodigoMesa) values(?,?)";
 			try {
 				conexion.consulta(sql);
 				conexion.getSentencia().setInt(1, mesero.getCodigoMesero());
@@ -38,7 +38,7 @@ public class RegistroMeseros {
 
 	public void delete() {
 		int CodigoMesero = InputTypes.readInt("Código del mesero: ", scanner);
-		String sql = "delete from Mesero where código = ?";
+		String sql = "delete from mesero where código = ?";
 		try {
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, CodigoMesero);
@@ -53,7 +53,7 @@ public class RegistroMeseros {
 		Mesero mesero;
 		int CodigoMesa;
 		int CodigoMesero = InputTypes.readInt("Código del Mesero: ", scanner);
-		String sql = "select * from Mesero where código = ?";
+		String sql = "select * from mesero where código = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoMesero);
 		resultSet = conexion.resultado();
@@ -94,7 +94,7 @@ public class RegistroMeseros {
 		int CodigoMesa;
 		int Cuenta;
 		int Codigo = InputTypes.readInt("Código del Mesero: ", scanner);
-		String sql = "select * from Mesero where código = ?";
+		String sql = "select * from mesero where código = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, Codigo);
 		resultSet = conexion.resultado();
@@ -109,7 +109,7 @@ public class RegistroMeseros {
 
 		Mesa mesa;
 
-		sql = "select * from Mesa where código = ?";
+		sql = "select * from mesa where código = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoMesa);
 		resultSet = conexion.resultado();

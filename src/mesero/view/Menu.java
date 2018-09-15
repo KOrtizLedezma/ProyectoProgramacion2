@@ -3,7 +3,9 @@ package mesero.view;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import mesa.entity.NoExisteMesa;
 import mesero.entity.Mesero;
+import mesero.entity.NoExisteMesero;
 
 public class Menu {
 
@@ -15,13 +17,14 @@ public class Menu {
 			System.out.println("------------------- ");
 			System.out.println("1. Ingresar Mesero");
 			System.out.println("2. Listar Meseros ");
-			System.out.println("3. Eliminar Mesero ");
+			System.out.println("3. Listar Meseros y sus entidades");
+			System.out.println("4. Eliminar Mesero ");
 			System.out.println("0. Salir");
 			System.out.println();
 
 			opcion = InputTypes.readInt("¿Su opción? ", scanner);
 
-			if (opcion >= 0 && opcion <= 3) {
+			if (opcion >= 0 && opcion <= 4) {
 				return opcion;
 			}
 		}
@@ -46,6 +49,14 @@ public class Menu {
 				}
 				break;
 			case 3:
+				try {
+					registroMeseros.listMesa();
+				} catch (NoExisteMesero | SQLException | NoExisteMesa e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			case 4:
 				registroMeseros.delete();
 				break;
 

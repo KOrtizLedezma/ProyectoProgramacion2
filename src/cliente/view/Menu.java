@@ -3,6 +3,13 @@ package cliente.view;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import cliente.entity.NoExisteCliente;
+import cuenta.entity.NoExisteCuenta;
+import cuenta.view.InputTypes;
+import detalleVenta.entity.NoExisteDetalleVenta;
+import detalleVenta.view.RegistroDetalleVentas;
+import plato.entity.NoExistePlato;
+
 public class Menu {
 
 	public static int encabezado(Scanner scanner) {
@@ -11,14 +18,15 @@ public class Menu {
 		while (true) {
 			System.out.println("Ingrese una opcion: ");
 			System.out.println("------------------- ");
-			System.out.println("1. Ingresar Cliente");
-			System.out.println("2. Listar Clientes ");
+			System.out.println("1. Ingresar Clliente");
+			System.out.println("2. Listar Cliente ");
+			System.out.println("3. Listar Clientes y entidades ");
 			System.out.println("0. Salir");
 			System.out.println();
 
 			opcion = InputTypes.readInt("¿Su opción? ", scanner);
 
-			if (opcion >= 0 && opcion <= 2) {
+			if (opcion >= 0 && opcion <= 3) {
 				return opcion;
 			}
 		}
@@ -33,7 +41,7 @@ public class Menu {
 				salir = true;
 				break;
 			case 1:
-			    registrarClientes.add();
+				registrarClientes.add();
 				break;
 			case 2:
 				try {
@@ -42,6 +50,14 @@ public class Menu {
 					e.printStackTrace();
 				}
 				break;
+			case 3:
+				try {
+					registrarClientes.listCuenta();
+				} catch (NoExisteCliente | SQLException | NoExisteCuenta e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 		}
 	}

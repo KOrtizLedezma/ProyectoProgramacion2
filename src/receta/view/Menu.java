@@ -3,7 +3,10 @@ package receta.view;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import insumos.entity.NoExisteInsumo;
 import mesero.entity.Mesero;
+import plato.entity.NoExistePlato;
+import receta.entity.NoExisteReceta;
 import receta.entity.Receta;
 
 public class Menu {
@@ -16,6 +19,7 @@ public class Menu {
 			System.out.println("------------------- ");
 			System.out.println("1. Ingresar Receta");
 			System.out.println("2. Listar Recetas ");
+			System.out.println("2. Listar Recetas y sus entidades");
 			System.out.println("3. Eliminar Recetas ");
 			System.out.println("0. Salir");
 			System.out.println();
@@ -47,6 +51,14 @@ public class Menu {
 				}
 				break;
 			case 3:
+				try {
+					registrarRecetas.listRecetasInsumo();
+				} catch (NoExistePlato | SQLException | NoExisteReceta | NoExisteInsumo e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			case 4:
 				registrarRecetas.delete();
 				break;
 
