@@ -24,7 +24,7 @@ public class RegistroMenusDia {
 
 	public void add() {
 		MenuDia menuDia = RegistroMenuDia.Ingresar(scanner);
-		String sql = "Insert into insumo (CodigoMenuEspecial, Fecha, CodigoPlatoEspecial) values(?,?,?)";
+		String sql = "Insert into menuDia (CodigoMenuEspecial, Fecha, CodigoPlatoEspecial) values(?,?,?)";
 		try {
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, menuDia.getCodigoMenuEspecial());
@@ -39,7 +39,7 @@ public class RegistroMenusDia {
 
 	public void delete() {
 		int CodigoMenuEspecial = InputTypes.readInt("Código del Menu Especial: ", scanner);
-		String sql = "delete from menudia where código = ?";
+		String sql = "delete from menudia where CodigoMenuEspecial = ?";
 		try {
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, CodigoMenuEspecial);
@@ -55,7 +55,7 @@ public class RegistroMenusDia {
 		int CodigoPlatoEspecial;
 		String Fecha;
 		int CodigoMenuEspecial = InputTypes.readInt("Código del Menu Especial: ", scanner);
-		String sql = "select * from menudia where código = ?";
+		String sql = "select * from menudia where CodigoMenuEspecial = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoMenuEspecial);
 		resultSet = conexion.resultado();
@@ -97,13 +97,13 @@ public class RegistroMenusDia {
 	public void listPlatoEspecial() throws NoExisteMenuDia, SQLException, NoExistePlatoEspecial {
 		ResultSet resultSet;
 		MenuDia menuDia;
-		int CodigoMenuEspecial; int CodigoPlatoEspecial; 
+		int CodigoPlatoEspecial; 
 		String Fecha; String NombrePlato;
 		double PrecioPlato;
-		int código = InputTypes.readInt("Código de Menu: ", scanner);
-		String sql = "select * from menudia where código = ?";
+		int CodigoMenuEspecial = InputTypes.readInt("Código de Menu: ", scanner);
+		String sql = "select * from menudia where CodigoMenuEspecial = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, código);
+		conexion.getSentencia().setInt(1, CodigoMenuEspecial);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
 			CodigoMenuEspecial = resultSet.getInt("CodigoMenuEspecial");
@@ -117,7 +117,7 @@ public class RegistroMenusDia {
 
 		PlatoEspecial platoEspecial;
 
-		sql = "select * from platoespecial where código = ?";
+		sql = "select * from platoespecial where CodigoPlatoEspecial = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoPlatoEspecial);
 		resultSet = conexion.resultado();

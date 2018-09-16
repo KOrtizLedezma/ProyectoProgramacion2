@@ -57,14 +57,14 @@ public class RegistroCuentas {
 	public void listClienteMesa() throws NoExisteCliente, SQLException, NoExisteCuenta, NoExisteMesa{
 		ResultSet resultSet;
 		Cuenta cuenta;
-		int NitCliente; int CantidadPlatos; int CodigoMesa; int CodigoPlato; int CodigoPlatoEspecial; int Cuenta;;
+		int CantidadPlatos; int CodigoMesa; int CodigoPlato; int CodigoPlatoEspecial; int Cuenta;;
 		double PrecioPlato;
 		String NombrePlato; String NombreNit;
 		
-		int código = InputTypes.readInt("Código de la Cuenta: ", scanner);
-		String sql = "select * from cuenta where código = ?";
+		int NitCliente = InputTypes.readInt("Nit del Cliente: ", scanner);
+		String sql = "select * from cuenta where NitCliente = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, código);
+		conexion.getSentencia().setInt(1, NitCliente);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
 			NitCliente = resultSet.getInt("NitCliente");
@@ -80,7 +80,7 @@ public class RegistroCuentas {
 
 		Cliente cliente;
 
-		sql = "select * from cliente where código = ?";
+		sql = "select * from cliente where NitCliente = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, NitCliente);
 		resultSet = conexion.resultado();
@@ -98,7 +98,7 @@ public class RegistroCuentas {
 		
 		Mesa mesa;
 
-		sql = "select * from mesa where código = ?";
+		sql = "select * from mesa where CodigoMesa = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoMesa);
 		resultSet = conexion.resultado();

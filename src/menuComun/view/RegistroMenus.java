@@ -38,7 +38,7 @@ public class RegistroMenus {
 
 	public void delete() {
 		int CodigoMenu = InputTypes.readInt("Código del Menu: ", scanner);
-		String sql = "delete from menu where código = ?";
+		String sql = "delete from menu where CodigoMenu = ?";
 		try {
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, CodigoMenu);
@@ -54,7 +54,7 @@ public class RegistroMenus {
 		int CodigoPlato;
 		String NombrePlato; String Fecha;
 		int CodigoMenu = InputTypes.readInt("Código del Menu: ", scanner);
-		String sql = "select * from menu where código = ?";
+		String sql = "select * from menu where CodigoMenu = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoMenu);
 		resultSet = conexion.resultado();
@@ -97,15 +97,14 @@ public class RegistroMenus {
 		ResultSet resultSet;
 		MenuComun menu;
 		int CodigoMenu;
-		int CodigoPlato;
 		String Fecha;
 		double PrecioPlato;
 		String NombrePlato;
 		String TamañoPlato;
-		int código = InputTypes.readInt("Código de Menu: ", scanner);
-		String sql = "select * from menu where código = ?";
+		int CodigoPlato = InputTypes.readInt("Código de Menu: ", scanner);
+		String sql = "select * from menu where CodigoPlato = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, código);
+		conexion.getSentencia().setInt(1, CodigoPlato);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
 			CodigoMenu = resultSet.getInt("CodigoMenu");
@@ -120,7 +119,7 @@ public class RegistroMenus {
 
 		Plato plato;
 
-		sql = "select * from plato where código = ?";
+		sql = "select * from plato where CodigoPlato = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoPlato);
 		resultSet = conexion.resultado();

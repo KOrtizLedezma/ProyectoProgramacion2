@@ -40,7 +40,7 @@ public class RegistroMesas {
 
 	public void delete() {
 		int CodigoMesa = InputTypes.readInt("Código de la Mesa: ", scanner);
-		String sql = "delete from mesa where código = ?";
+		String sql = "delete from mesa where CodigoMesa = ?";
 		try {
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, CodigoMesa);
@@ -55,7 +55,7 @@ public class RegistroMesas {
 		Mesa mesa;
 		int cuenta;
 		int CodigoMesa = InputTypes.readInt("Código de la Mesa: ", scanner);
-		String sql = "select * from mesa where código = ?";
+		String sql = "select * from mesa where CodigoMesa = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoMesa);
 		resultSet = conexion.resultado();
@@ -80,7 +80,7 @@ public class RegistroMesas {
 
 	public void list() throws SQLException {
 		Mesa mesa;
-		String sql = "select * from Mesa ";
+		String sql = "select * from mesa ";
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {

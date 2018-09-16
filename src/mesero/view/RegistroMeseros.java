@@ -38,7 +38,7 @@ public class RegistroMeseros {
 
 	public void delete() {
 		int CodigoMesero = InputTypes.readInt("Código del mesero: ", scanner);
-		String sql = "delete from mesero where código = ?";
+		String sql = "delete from mesero where CodigoMesero = ?";
 		try {
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, CodigoMesero);
@@ -53,7 +53,7 @@ public class RegistroMeseros {
 		Mesero mesero;
 		int CodigoMesa;
 		int CodigoMesero = InputTypes.readInt("Código del Mesero: ", scanner);
-		String sql = "select * from mesero where código = ?";
+		String sql = "select * from mesero where CodigoMesero = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoMesero);
 		resultSet = conexion.resultado();
@@ -68,7 +68,7 @@ public class RegistroMeseros {
 		System.out.println(mesero);
 		Menu.menúModificar(scanner, mesero);
 
-		sql = "update Mesero set CodigoMesero = ?, CodigoMesa = ?";
+		sql = "update mesero set CodigoMesero = ?, CodigoMesa = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, mesero.getCodigoMesero());
@@ -78,7 +78,7 @@ public class RegistroMeseros {
 
 	public void list() throws SQLException {
 		Mesero mesero;
-		String sql = "select * from Mesero ";
+		String sql = "select * from mesero ";
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {
@@ -90,13 +90,12 @@ public class RegistroMeseros {
 	public void listMesa() throws NoExisteMesero, SQLException, NoExisteMesa {
 		ResultSet resultSet;
 		Mesero mesero;
-		int CodigoMesero;
 		int CodigoMesa;
 		int Cuenta;
-		int Codigo = InputTypes.readInt("Código del Mesero: ", scanner);
-		String sql = "select * from mesero where código = ?";
+		int CodigoMesero = InputTypes.readInt("Código del Mesero: ", scanner);
+		String sql = "select * from mesero where CodigoMesero = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, Codigo);
+		conexion.getSentencia().setInt(1, CodigoMesero);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
 			CodigoMesa = resultSet.getInt("CodigoMesa");
@@ -109,7 +108,7 @@ public class RegistroMeseros {
 
 		Mesa mesa;
 
-		sql = "select * from mesa where código = ?";
+		sql = "select * from mesa where CodigoMesa = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoMesa);
 		resultSet = conexion.resultado();

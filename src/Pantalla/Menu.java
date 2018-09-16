@@ -57,7 +57,7 @@ public class Menu {
 		RegistroInsumos registroInsumos = new RegistroInsumos(conexion, scanner);
 		RegistroMenus registroMenus = new RegistroMenus(conexion, scanner);
 		RegistroMenusDia registroMenusDia = new RegistroMenusDia(conexion, scanner); 
-		RegistroMesas registrarMesas = new RegistroMesas(conexion, scanner);
+		RegistroMesas registroMesas = new RegistroMesas(conexion, scanner);
 		RegistroMeseros registroMeseros = new RegistroMeseros(conexion, scanner);
 		RegistroPlatos registrarPlatos = new RegistroPlatos(conexion, scanner);
 		RegistroPlatosEspeciales registroPlatosEspeciales = new RegistroPlatosEspeciales(conexion, scanner);
@@ -78,40 +78,32 @@ public class Menu {
 				detalleVenta.view.Menu.menú(scanner, registroDetalleVentas);
 				break;
 			case 4:
-				insumos.view.Menu.menú(scanner, registroInsumos);
-				//Falta el modificar
+				insumos.view.MenuFinal.menú(scanner, registroInsumos);
 				break;
 			case 5:
-				menuComun.view.Menu.menú(scanner, registroMenus);
-				//Falta el modificar
+				menuComun.view.MenuFinal.menú(scanner, registroMenus);
 				break;
 			case 6:
-				menuDia.view.Menu.menú(scanner, registroMenusDia);
-				//Falta el modificar
+				menuDia.view.MenuFinal.menú(scanner, registroMenusDia);
 				break;
 			case 7:
-				mesa.view.Menu.menú(scanner, registrarMesas);
-				//Falta el modificar
+				mesa.view.MenuFinal.menú(scanner, registroMesas);
 				break;
 			case 8:
-				mesero.view.Menu.menú(scanner, registroMeseros);
-				//Falta el modificar
+				mesero.view.MenuFinal.menú(scanner, registroMeseros);
 				break;
 			case 9:
-				plato.view.Menu.menú(scanner, registrarPlatos);
-				//Falta el modificar
+				plato.view.MenuFinal.menú(scanner, registrarPlatos);
 				break;
 			case 10:
-				platoEspecial.view.Menu.menú(scanner, registroPlatosEspeciales);
-				//Falta el modificar
+				platoEspecial.view.MenuFinal.menú(scanner, registroPlatosEspeciales);
 				break;
 			case 11:
-				receta.view.Menu.menú(scanner, registrarRecetas);
-				//Falta el modificar
+				receta.view.MenuFinal.menú(scanner, registrarRecetas);
 				break;
 			
 		}
-		conexion.close();
+		//conexion.close();
 	}
 }
 }

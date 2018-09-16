@@ -36,6 +36,10 @@ public class PlatoEspecial {
 	public void setPrecioPlato(double precioPlato) {
 		PrecioPlato = precioPlato;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "PlatoEspecial [codigoPlatoEspecial=" + codigoPlatoEspecial + ", NombrePlato=" + NombrePlato
+				+ ", PrecioPlato=" + PrecioPlato + "]";
+	}
 }

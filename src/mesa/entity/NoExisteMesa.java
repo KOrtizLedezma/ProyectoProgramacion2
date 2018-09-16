@@ -5,5 +5,6 @@ private static final long serialVersionUID = 1L;
 	
 	public NoExisteMesa (){
 		super("No existe la mesa");
+		System.out.println("No existe la Mesa");
 	}
 }

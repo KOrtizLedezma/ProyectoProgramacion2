@@ -5,5 +5,6 @@ private static final long serialVersionUID = 1L;
 	
 	public NoExisteInsumo (){
 		super("No existe el insumo");
+		System.out.println("No existe el insumo");
 	}
 }

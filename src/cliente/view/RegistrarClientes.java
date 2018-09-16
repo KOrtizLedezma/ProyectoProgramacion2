@@ -21,7 +21,7 @@ public class RegistrarClientes {
 	}
 	public void add()  {
 		Cliente cliente = RegistrarCliente.ingresar(scanner);
-		String sql = "Insert into cliente (NitCliente, CantidadPlatos, CodigoPlato, CodigoPlatoEspecial, NombreNit) values(?,?,?,?,?";
+		String sql = "Insert into cliente (NitCliente, CantidadPlatos, CodigoPlato, CodigoPlatoEspecial, NombreNit) values(?,?,?,?,?)";
 			
 			
 			try {
@@ -54,7 +54,6 @@ public class RegistrarClientes {
 	public void listCuenta() throws NoExisteCliente, SQLException, NoExisteCuenta {
 		ResultSet resultSet;
 		Cliente cliente;
-		int NitCliente;
 		int CantidadPlatos;
 		int CodigoPlato;
 		int codigoPlatoEspecial;
@@ -62,10 +61,10 @@ public class RegistrarClientes {
 		String NombreNit;
 		double PrecioPlato;
 		int CodigoMesa;
-		int código = InputTypes.readInt("Código del Cliente: ", scanner);
-		String sql = "select * from cliente where código = ?";
+		int NitCliente = InputTypes.readInt("Nit del Cliente: ", scanner);
+		String sql = "select * from cliente where NitCliente = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, código);
+		conexion.getSentencia().setInt(1, NitCliente);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
 			NitCliente = resultSet.getInt("NitCliente");
@@ -81,7 +80,7 @@ public class RegistrarClientes {
 
 		Cuenta cuenta;
 
-		sql = "select * from cuenta where código = ?";
+		sql = "select * from cuenta where NitCliente = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, NitCliente);
 		resultSet = conexion.resultado();

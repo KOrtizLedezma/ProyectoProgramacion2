@@ -25,11 +25,12 @@ public class RegistroDetalleVentas {
 	public void add()  {
 		DetalleVenta detalleVenta = RegistroDetalleVenta.Ingresar(scanner);
 		
-		String sql = "Insert into detalleventa (CodigoPlato, CantidadPlato) values(?,?)";
+		String sql = "Insert into detalleVenta (CodigoPlato, CodigoPlatoEspecial, CantidadPlato) values(?,?,?)";
 			try {
 				conexion.consulta(sql);
 				conexion.getSentencia().setInt(1, detalleVenta.getCodigoPlato());
-				conexion.getSentencia().setInt(2, detalleVenta.getCantidadPlato());
+				conexion.getSentencia().setInt(2, detalleVenta.getCodigoPlatoEspecial());
+				conexion.getSentencia().setInt(3, detalleVenta.getCantidadPlato());
 				conexion.modificacion();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -44,7 +45,8 @@ public class RegistroDetalleVentas {
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {
-			detalleVenta = new DetalleVenta(resultSet.getInt("CodigoPlato"), resultSet.getInt("CantidadPlato"));
+			detalleVenta = new DetalleVenta(resultSet.getInt("CodigoPlato"),resultSet.getInt("CodigoPlatoEspecial"), 
+					resultSet.getInt("CantidadPlato"));
 			System.out.println(detalleVenta);
 		}
 	}
@@ -53,19 +55,20 @@ public class RegistroDetalleVentas {
 		
 		ResultSet resultSet;
 		DetalleVenta detalleVenta;
-		int CodigoPlato; int CantidadPlatos;
+		int CantidadPlatos; int CodigoPlatoEspecial;
 		double PrecioPlato;
 		String NombrePlato; String TamañoPlato;
 		
-		int código = InputTypes.readInt("Código del Detalle de Venta: ", scanner);
-		String sql = "select * from detalleventa where código = ?";
+		int CodigoPlato = InputTypes.readInt("Código del Detalle de Venta: ", scanner);
+		String sql = "select * from detalleventa where CodigoPlato = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, código);
+		conexion.getSentencia().setInt(1, CodigoPlato);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
 			CodigoPlato = resultSet.getInt("CodigoPlato");
+			CodigoPlatoEspecial = resultSet.getInt("CodigoPlatoEspecial");
 			CantidadPlatos = resultSet.getInt("CantidadPlato");
-			detalleVenta = new DetalleVenta(CodigoPlato, CantidadPlatos);
+			detalleVenta = new DetalleVenta(CodigoPlato, CodigoPlatoEspecial, CantidadPlatos);
 		} else {
 			throw new NoExisteDetalleVenta();
 		}
@@ -73,7 +76,7 @@ public class RegistroDetalleVentas {
 
 		Plato plato;
 
-		sql = "select * from plato where código = ?";
+		sql = "select * from plato where CodigoPlato = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoPlato);
 		resultSet = conexion.resultado();

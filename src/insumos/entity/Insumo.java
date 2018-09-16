@@ -30,4 +30,10 @@ public class Insumo {
 	public void setNombreInsumo(String nombreInsumo) {
 		NombreInsumo = nombreInsumo;
 	}
+	@Override
+	public String toString() {
+		return "Insumo [CodigoInsumo=" + CodigoInsumo + ", CantidadInsumo=" + CantidadInsumo + ", NombreInsumo="
+				+ NombreInsumo + "]";
+	}
+	
 }

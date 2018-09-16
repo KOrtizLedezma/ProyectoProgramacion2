@@ -56,6 +56,10 @@ public class Cuenta {
 	public void setCodigoMesa(int codigoMesa) {
 		CodigoMesa = codigoMesa;
 	}
- 
-	
+
+	@Override
+	public String toString() {
+		return "Cuenta [NitCliente=" + NitCliente + ", PrecioPlato=" + PrecioPlato + ", CantidadPlatos="
+				+ CantidadPlatos + ", NombrePlato=" + NombrePlato + ", CodigoMesa=" + CodigoMesa + "]";
+	}
 }

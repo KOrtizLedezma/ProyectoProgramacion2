@@ -30,6 +30,11 @@ public class MenuDia {
 	public void setCodigoPlatoEspecial(int codigoPlatoEspecial) {
 		CodigoPlatoEspecial = codigoPlatoEspecial;
 	}
+	@Override
+	public String toString() {
+		return "MenuDia [CodigoMenuEspecial=" + CodigoMenuEspecial + ", Fecha=" + Fecha + ", CodigoPlatoEspecial="
+				+ CodigoPlatoEspecial + "]";
+	}
 	
 	 
 }

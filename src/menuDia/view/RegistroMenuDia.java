@@ -12,7 +12,7 @@ public class RegistroMenuDia {
 	 
 	 int CodigoPlatoEspecial =InputTypes.readInt("Ingrese el codigo del Plato Especial: ", scanner);
 	 
-	 String Fecha = InputTypes.readString("Ingrese la fecha", scanner);
+	 String Fecha = InputTypes.readString("Ingrese la fecha: ", scanner);
 	 
 	 return new MenuDia(CodigoMenuEspecial, Fecha, CodigoPlatoEspecial);
 	 }

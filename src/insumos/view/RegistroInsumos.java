@@ -38,7 +38,7 @@ public class RegistroInsumos {
 
 	public void delete() {
 		int CodigoInsumo = InputTypes.readInt("Código del Insumo: ", scanner);
-		String sql = "delete from insumo where código = ?";
+		String sql = "delete from insumo where CodigoInsumo = ?";
 		try {
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, CodigoInsumo);
@@ -54,7 +54,7 @@ public class RegistroInsumos {
 		String NombreInsumo;
 		int CantidadInsumo;
 		int CodigoInsumo = InputTypes.readInt("Código del Insumo: ", scanner);
-		String sql = "select * from insumo where código = ?";
+		String sql = "select * from insumo where CodigoInsumo = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoInsumo);
 		resultSet = conexion.resultado();
@@ -70,7 +70,7 @@ public class RegistroInsumos {
 		System.out.println(insumo);
 		Menu.menúModificar(scanner, insumo);
 
-		sql = "update producto set CodigoInsumo = ?, CantidadInsumo = ?, NombreInsumo = ?";
+		sql = "update insumo set CodigoInsumo = ?, CantidadInsumo = ?, NombreInsumo = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, insumo.getCodigoInsumo());
@@ -94,12 +94,12 @@ public class RegistroInsumos {
 	public void listReceta() throws NoExisteInsumo, SQLException, NoExisteReceta {
 		ResultSet resultSet;
 		Insumo insumo;
-		int CodigoInsumo; int CantidadInsumo; int CodigoPlato;
+		int CantidadInsumo; int CodigoPlato;
 		String NombreInsumo;
-		int código = InputTypes.readInt("Código de Insumo: ", scanner);
-		String sql = "select * from insumo where código = ?";
+		int CodigoInsumo = InputTypes.readInt("Código de Insumo: ", scanner);
+		String sql = "select * from insumo where CodigoInsumo = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, código);
+		conexion.getSentencia().setInt(1, CodigoInsumo);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
 			CodigoInsumo = resultSet.getInt("CodigoInsumo");
@@ -113,7 +113,7 @@ public class RegistroInsumos {
 
 		Receta receta;
 
-		sql = "select * from receta where código = ?";
+		sql = "select * from receta where CodigoInsumo = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoInsumo);
 		resultSet = conexion.resultado();

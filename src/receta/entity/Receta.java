@@ -36,4 +36,11 @@ public class Receta {
 	public void setCantidadInsumo(int cantidadInsumo) {
 		this.CantidadInsumo = cantidadInsumo;
 	}
+
+	@Override
+	public String toString() {
+		return "Receta [CodigoPlato=" + CodigoPlato + ", CodigoInsumo=" + CodigoInsumo + ", CantidadInsumo="
+				+ CantidadInsumo + "]";
+	}
+	
 }

@@ -31,7 +31,7 @@ public class RegistroPlatosEspeciales {
 
 	public void add() {
 		PlatoEspecial platoEspecial = RegistroPlatoEspecial.ingresar(scanner);
-		String sql = "Insert into platoEspecial (CodigoPlatoEspecial, NombrePlato, PrecioPlato) values(?,?,?)";
+		String sql = "Insert into platoespecial (CodigoPlatoEspecial, NombrePlato, PrecioPlato) values(?,?,?)";
 			try {
 				conexion.consulta(sql);
 				conexion.getSentencia().setInt(1, platoEspecial.getCodigoPlatoEspecial());
@@ -45,7 +45,7 @@ public class RegistroPlatosEspeciales {
 
 	public void delete() {
 		int CodigoPlatoEspecial = InputTypes.readInt("Código del Plato Especial: ", scanner);
-		String sql = "delete from platoEspecial where código = ?";
+		String sql = "delete from platoespecial where CodigoPlatoEspecial = ?";
 		try {
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, CodigoPlatoEspecial);
@@ -62,7 +62,7 @@ public class RegistroPlatosEspeciales {
 		String NombrePlato;
 		double PrecioPlato;
 		int CodigoPlatoEspecial = InputTypes.readInt("Código del plato especial: ", scanner);
-		String sql = "select * from platoEspecial where código = ?";
+		String sql = "select * from platoespecial where CodigoPlatoEspecial = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, CodigoPlatoEspecial);
 		resultSet = conexion.resultado();
@@ -78,7 +78,7 @@ public class RegistroPlatosEspeciales {
 		System.out.println(platoEspecial);
 		Menu.menúModificar(scanner, platoEspecial);
 
-		sql = "update plato set CodigoPlatoEspecial= ?, NombrePlato = ?, PrecioPlato = ?";
+		sql = "update platoespecial set CodigoPlatoEspecial= ?, NombrePlato = ?, PrecioPlato = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, platoEspecial.getCodigoPlatoEspecial());
@@ -89,7 +89,7 @@ public class RegistroPlatosEspeciales {
 
 	public void list() throws SQLException {
 		PlatoEspecial platoEspecial;
-		String sql = "select * from platoEspecial ";
+		String sql = "select * from platoespecial ";
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {

@@ -14,7 +14,7 @@ public class RegistrarCliente {
 		
 		int codigoPlato = InputTypes.readInt("Ingrese el codigo del Plato ", scanner);
 		
-		int codigoPlatoEspecial = InputTypes.readInt("Ingrese el codigo delplato Especial ", scanner);
+		int codigoPlatoEspecial = InputTypes.readInt("Ingrese el codigo del Plato Especial ", scanner);
 		
 		String nombreNit = InputTypes.readString("Ingrese el nombre del NIT ", scanner);
 		

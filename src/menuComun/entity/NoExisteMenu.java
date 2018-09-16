@@ -5,5 +5,6 @@ private static final long serialVersionUID = 1L;
 	
 	public NoExisteMenu (){
 		super("No existe el menu");
+		System.out.println("No existe el Menu");
 	}
 }

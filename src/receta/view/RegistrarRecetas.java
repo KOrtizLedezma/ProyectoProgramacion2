@@ -24,7 +24,7 @@ public class RegistrarRecetas {
 
 		public void add() {
 			Receta receta = RegistrarReceta.ingresar(scanner);
-			String sql = "Insert into Receta (CodigoPlato, CodigoInsumo, CantidadInsumo) values(?,?,?)";
+			String sql = "Insert into receta (CodigoPlato, CodigoInsumo, CantidadInsumo) values(?,?,?)";
 				try {
 					conexion.consulta(sql);
 					conexion.getSentencia().setInt(1, receta.getCodigoPlato());
@@ -38,7 +38,7 @@ public class RegistrarRecetas {
 
 		public void delete() {
 			int CodigoPlato = InputTypes.readInt("Código de la receta: ", scanner);
-			String sql = "delete from receta where código = ?";
+			String sql = "delete from receta where CodigoPlato = ?";
 			try {
 				conexion.consulta(sql);
 				conexion.getSentencia().setInt(1, CodigoPlato);
@@ -54,7 +54,7 @@ public class RegistrarRecetas {
 			int CodigoInsumo;
 			int CantidadInsumo;
 			int CodigoPlato = InputTypes.readInt("Código del plato: ", scanner);
-			String sql = "select * from receta where código = ?";
+			String sql = "select * from receta where CodigoPlato = ?";
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, CodigoPlato);
 			resultSet = conexion.resultado();
@@ -70,7 +70,7 @@ public class RegistrarRecetas {
 			System.out.println(receta);
 			Menu.menúModificar(scanner, receta);
 
-			sql = "update producto set CodigoPlato = ?, CodigoInsumo = ?, CantidadInsumo = ?";
+			sql = "update receta set CodigoPlato = ?, CodigoInsumo = ?, CantidadInsumo = ?";
 
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, receta.getCodigoPlato());
@@ -95,11 +95,11 @@ public class RegistrarRecetas {
 			Receta receta;
 			String NombrePlato; String TamañoPlato; String NombreInsumo;
 			Double PrecioPlato;
-			int CodigoInsumo; int CantidadInsumo; int CodigoPlato;
-			int Codigo = InputTypes.readInt("Código del Plato: ", scanner);
-			String sql = "select * from receta where código = ?";
+			int CodigoInsumo; int CantidadInsumo;
+			int CodigoPlato = InputTypes.readInt("Código del Plato: ", scanner);
+			String sql = "select * from receta where CodigoPlato = ?";
 			conexion.consulta(sql);
-			conexion.getSentencia().setInt(1, Codigo);
+			conexion.getSentencia().setInt(1, CodigoPlato);
 			resultSet = conexion.resultado();
 			if (resultSet.next()) {
 				CodigoPlato = resultSet.getInt("CodigoPlato");
@@ -113,7 +113,7 @@ public class RegistrarRecetas {
 
 			Plato plato;
 
-			sql = "select * from plato where código = ?"; 
+			sql = "select * from plato where CodigoPlato = ?"; 
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, CodigoPlato);
 			resultSet = conexion.resultado();
@@ -130,7 +130,7 @@ public class RegistrarRecetas {
 			
 			Insumo insumo;
 
-			sql = "select * from insumo where código = ?"; 
+			sql = "select * from insumo where CodigoInsumo = ?"; 
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, CodigoInsumo);
 			resultSet = conexion.resultado();
