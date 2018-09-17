@@ -23,12 +23,13 @@ public class RegistroMenus {
 
 	public void add() {
 		MenuComun menu = RegistroMenu.Ingresar(scanner);
-		String sql = "Insert into menu (CodigoMenu, CodigoPlato, NombrePlato) values(?,?,?)";
+		String sql = "Insert into menu (CodigoMenu, CodigoPlato, NombrePlato, Fecha) values(?,?,?,?)";
 		try {
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, menu.getCodigoMenu());
 			conexion.getSentencia().setInt(2, menu.getCodigoPlato());
 			conexion.getSentencia().setString(3, menu.getNombrePlato());
+			conexion.getSentencia().setString(4, menu.getFecha());
 			conexion.modificacion();
 		} catch (SQLException e) {
 			e.printStackTrace();

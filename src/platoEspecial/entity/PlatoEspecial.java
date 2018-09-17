@@ -42,4 +42,8 @@ public class PlatoEspecial {
 		return "PlatoEspecial [codigoPlatoEspecial=" + codigoPlatoEspecial + ", NombrePlato=" + NombrePlato
 				+ ", PrecioPlato=" + PrecioPlato + "]";
 	}
+	
+	public String toStringCliente() {
+		return "PlatoEspecial [NombrePlato=" + NombrePlato + "]";
+	}
 }

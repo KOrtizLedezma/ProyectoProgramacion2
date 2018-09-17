@@ -9,6 +9,7 @@ import cuenta.view.InputTypes;
 import detalleVenta.entity.NoExisteDetalleVenta;
 import detalleVenta.view.RegistroDetalleVentas;
 import plato.entity.NoExistePlato;
+import platoEspecial.entity.NoExistePlatoEspecial;
 
 public class Menu {
 
@@ -21,12 +22,13 @@ public class Menu {
 			System.out.println("1. Ingresar Clliente");
 			System.out.println("2. Listar Cliente ");
 			System.out.println("3. Listar Clientes y entidades ");
+			System.out.println("4. Eliminar Clientes ");
 			System.out.println("0. Salir");
 			System.out.println();
 
 			opcion = InputTypes.readInt("¿Su opción? ", scanner);
 
-			if (opcion >= 0 && opcion <= 3) {
+			if (opcion >= 0 && opcion <= 4) {
 				return opcion;
 			}
 		}
@@ -53,10 +55,12 @@ public class Menu {
 			case 3:
 				try {
 					registrarClientes.listCuenta();
-				} catch (NoExisteCliente | SQLException | NoExisteCuenta e) {
+				} catch (NoExisteCliente | SQLException | NoExistePlato | NoExistePlatoEspecial | NoExisteCuenta e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			case 4:
+				registrarClientes.delete();
 
 			}
 		}

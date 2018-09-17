@@ -53,6 +53,10 @@ public class Plato {
 				+ "]";
 	}
 	
+	public String toStringPlato() {
+		return "Plato [ nombre=" + NombrePlato + ", tamaño=" + TamañoPlato+ "]";
+	}
+	
 	
 	
 }

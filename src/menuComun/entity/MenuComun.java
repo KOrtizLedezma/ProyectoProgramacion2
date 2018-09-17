@@ -38,5 +38,10 @@ public class MenuComun {
 	public void setFecha(String fecha) {
 		this.Fecha = fecha;
 	}
+	@Override
+	public String toString() {
+		return "MenuComun [CodigoMenu=" + CodigoMenu + ", CodigoPlato=" + CodigoPlato + ", NombrePlato=" + NombrePlato
+				+ ", Fecha=" + Fecha + "]";
+	}
 
 }

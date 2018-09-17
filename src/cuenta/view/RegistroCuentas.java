@@ -54,6 +54,18 @@ public class RegistroCuentas {
 		}
 	}
 	
+	public void delete() {
+		int NitCliente = InputTypes.readInt("Nit del Cliente: ", scanner);
+		String sql = "delete from cuenta where NitCliente = ?";
+		try {
+			conexion.consulta(sql);
+			conexion.getSentencia().setInt(1, NitCliente);
+			conexion.modificacion();
+		} catch (SQLException e) {
+			System.out.println(e.getSQLState());
+		}
+	}
+	
 	public void listClienteMesa() throws NoExisteCliente, SQLException, NoExisteCuenta, NoExisteMesa{
 		ResultSet resultSet;
 		Cuenta cuenta;

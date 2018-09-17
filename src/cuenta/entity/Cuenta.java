@@ -62,4 +62,9 @@ public class Cuenta {
 		return "Cuenta [NitCliente=" + NitCliente + ", PrecioPlato=" + PrecioPlato + ", CantidadPlatos="
 				+ CantidadPlatos + ", NombrePlato=" + NombrePlato + ", CodigoMesa=" + CodigoMesa + "]";
 	}
+	
+	public String toStringCliente() {
+		return "Cuenta [ PrecioPlato=" + PrecioPlato + ", CantidadPlatos="
+				+ CantidadPlatos + ", CodigoMesa=" + CodigoMesa + "]";
+	}
 }

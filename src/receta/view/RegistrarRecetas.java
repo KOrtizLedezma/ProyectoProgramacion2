@@ -30,7 +30,7 @@ public class RegistrarRecetas {
 					conexion.getSentencia().setInt(1, receta.getCodigoPlato());
 					conexion.getSentencia().setInt(2, receta.getCodigoInsumo());
 					conexion.getSentencia().setInt(3, receta.getCantidadInsumo());
-					conexion.modificacion();
+					conexion.modificacion(); 
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

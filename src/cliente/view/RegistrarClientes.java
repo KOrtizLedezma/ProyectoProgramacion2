@@ -9,6 +9,11 @@ import cliente.entity.NoExisteCliente;
 import control.Conexion;
 import cuenta.entity.Cuenta;
 import cuenta.entity.NoExisteCuenta;
+import insumos.view.InputTypes;
+import plato.entity.NoExistePlato;
+import plato.entity.Plato;
+import platoEspecial.entity.NoExistePlatoEspecial;
+import platoEspecial.entity.PlatoEspecial;
 
 public class RegistrarClientes {
 
@@ -51,16 +56,24 @@ public class RegistrarClientes {
 		}
 	}
 	
-	public void listCuenta() throws NoExisteCliente, SQLException, NoExisteCuenta {
+	public void delete() {
+		int NitCliente = InputTypes.readInt("Nit del Cliente: ", scanner);
+		String sql = "delete from cliente where NitCliente = ?";
+		try {
+			conexion.consulta(sql);
+			conexion.getSentencia().setInt(1, NitCliente);
+			conexion.modificacion();
+		} catch (SQLException e) {
+			System.out.println(e.getSQLState());
+		}
+	}
+	
+	public void listCuenta() throws NoExistePlatoEspecial, NoExistePlato, NoExisteCliente, SQLException, NoExisteCuenta {
 		ResultSet resultSet;
 		Cliente cliente;
-		int CantidadPlatos;
-		int CodigoPlato;
-		int codigoPlatoEspecial;
-		String NombrePlato;
-		String NombreNit;
+		int CantidadPlatos; int CodigoPlato; int codigoPlatoEspecial; int CodigoMesa; 
+		String NombrePlato; String NombreNit; String TamañoPlato;
 		double PrecioPlato;
-		int CodigoMesa;
 		int NitCliente = InputTypes.readInt("Nit del Cliente: ", scanner);
 		String sql = "select * from cliente where NitCliente = ?";
 		conexion.consulta(sql);
@@ -85,15 +98,44 @@ public class RegistrarClientes {
 		conexion.getSentencia().setInt(1, NitCliente);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			NitCliente = resultSet.getInt("NitCliente");
 			PrecioPlato = resultSet.getDouble("PrecioPlato");
 			CantidadPlatos = resultSet.getInt("CantidadPlatos");
 			NombrePlato = resultSet.getString("NombrePlato");
 			CodigoMesa = resultSet.getInt("CodigoMesa");
 			cuenta = new Cuenta(NitCliente, PrecioPlato, CantidadPlatos, NombrePlato, CodigoMesa);
-			System.out.println(cuenta);
+			System.out.println(cuenta.toStringCliente());
 		} else {
 			throw new NoExisteCuenta();
+		}
+		
+		Plato plato;
+
+		sql = "select * from plato where CodigoPlato = ?";
+		conexion.consulta(sql);
+		conexion.getSentencia().setInt(1, CodigoPlato);
+		resultSet = conexion.resultado();
+		if (resultSet.next()) {
+			TamañoPlato = resultSet.getString("TamañoPlato");
+			plato = new Plato(CodigoPlato, NombrePlato, PrecioPlato, TamañoPlato);
+			System.out.println(plato.toStringPlato());
+		} else {
+			throw new NoExistePlato();
+		}
+		
+		PlatoEspecial platoEspecial;
+
+		sql = "select * from platoespecial where CodigoPlatoEspecial = ?";
+		conexion.consulta(sql);
+		conexion.getSentencia().setInt(1, codigoPlatoEspecial);
+		resultSet = conexion.resultado();
+		if (resultSet.next()) {
+			codigoPlatoEspecial = resultSet.getInt("CodigoPlatoEspecial");
+			NombrePlato = resultSet.getString("NombrePlato");
+			PrecioPlato = resultSet.getDouble("PrecioPlato");
+			platoEspecial = new PlatoEspecial(codigoPlatoEspecial, NombrePlato, PrecioPlato);
+			System.out.println(platoEspecial.toStringCliente());
+		} else {
+			throw new NoExistePlatoEspecial();
 		}
 
 	}

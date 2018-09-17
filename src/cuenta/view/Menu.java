@@ -19,12 +19,13 @@ public class Menu {
 			System.out.println("1. Ingresar Cuenta");
 			System.out.println("2. Listar Cuentas ");
 			System.out.println("3. Listar Cuentas y entidades ");
+			System.out.println("4. Eliminar Cuenta");
 			System.out.println("0. Salir");
 			System.out.println();
 
 			opcion = InputTypes.readInt("¿Su opción? ", scanner);
 
-			if (opcion >= 0 && opcion <= 3) {
+			if (opcion >= 0 && opcion <= 4) {
 				return opcion;
 			}
 		}
@@ -55,6 +56,8 @@ public class Menu {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			case 4:
+				registroCuentas.delete();
 
 			}
 		}
