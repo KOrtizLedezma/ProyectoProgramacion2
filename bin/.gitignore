@@ -1,14 +1,9 @@
-/Pantalla/
-/cliente/
-/control/
-/cuenta/
 /detalleVenta/
 /insumos/
-/menu/
+/menuComun/
+/menuDia/
 /mesa/
 /mesero/
 /plato/
-/receta/
-/menuComun/
-/menuDia/
 /platoEspecial/
+/receta/
