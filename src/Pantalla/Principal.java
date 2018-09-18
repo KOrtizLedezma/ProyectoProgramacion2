@@ -19,8 +19,5 @@ public class Principal {
 			
 			scanner.close(); 
 		}
-	//Tiene que dar
-	//Esto solo es una prueba
-	
 	
 }
